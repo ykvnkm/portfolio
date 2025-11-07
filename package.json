@@ -4,7 +4,7 @@
   "description": "Максим Яковенко - UX/UI & Graphic designer Portfolio",
   "homepage": "https://ykvnkm.github.io/portfolio",
   "scripts": {
-    "start": "python3 -m http.server 3000",
+    "start": "python3 -m http.server 8080",
     "deploy": "./deploy.sh"
   },
   "devDependencies": {
