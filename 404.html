@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/portfolio/">
+    <title>Максим Яковенко - UX/UI & Graphic designer</title>
+    <link rel="icon" type="image/svg+xml" href="public/vite.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // Redirect to index.html and let router handle the route
+        const path = window.location.pathname;
+        const basePath = '/portfolio';
+        let targetPath = path;
+        
+        if (path.startsWith(basePath)) {
+            targetPath = path.substring(basePath.length) || '/';
+        }
+        
+        // Store the target path and redirect
+        sessionStorage.setItem('redirectPath', targetPath);
+        window.location.replace(basePath + '/index.html');
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
+

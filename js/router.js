@@ -1,5 +1,8 @@
 class Router {
     constructor() {
+        // Determine base path (e.g., '/portfolio' or '')
+        this.basePath = this.getBasePath();
+        
         this.routes = {
             '/': 'index.html',
             '/projects/aist-filter': 'projects/aist-filter.html',
@@ -19,11 +22,50 @@ class Router {
         // Save original main content on first load
         this.saveOriginalContent();
         
+        // Check if we have a redirect path from 404.html
+        const redirectPath = sessionStorage.getItem('redirectPath');
+        if (redirectPath) {
+            sessionStorage.removeItem('redirectPath');
+            // Update URL without reload
+            const fullPath = this.getFullPath(redirectPath);
+            window.history.replaceState({}, '', fullPath);
+            this.handleRoute();
+            return;
+        }
+        
         // Handle initial route only if we're not on the main page
-        const path = window.location.pathname;
+        const path = this.getCurrentPath();
         if (path !== '/' && path !== '/index.html') {
             this.handleRoute();
         }
+    }
+
+    getBasePath() {
+        // Get base path from current location
+        // If URL is https://ykvnkm.github.io/portfolio, basePath is '/portfolio'
+        // If URL is https://ykvnkm.github.io, basePath is ''
+        const pathname = window.location.pathname;
+        if (pathname.startsWith('/portfolio')) {
+            return '/portfolio';
+        }
+        return '';
+    }
+
+    getCurrentPath() {
+        // Get current path relative to base path
+        const pathname = window.location.pathname;
+        if (this.basePath && pathname.startsWith(this.basePath)) {
+            return pathname.substring(this.basePath.length) || '/';
+        }
+        return pathname;
+    }
+
+    getFullPath(path) {
+        // Convert relative path to full path with base
+        if (path.startsWith('/')) {
+            return this.basePath + path;
+        }
+        return this.basePath + '/' + path;
     }
 
     saveOriginalContent() {
@@ -34,15 +76,16 @@ class Router {
     }
 
     async navigate(path) {
-        // Push the new state to history
-        window.history.pushState({}, '', path);
+        // Push the new state to history with full path
+        const fullPath = this.getFullPath(path);
+        window.history.pushState({}, '', fullPath);
         
         // Handle the route change
         await this.handleRoute();
     }
 
     async handleRoute() {
-        const path = window.location.pathname;
+        const path = this.getCurrentPath();
         
         // If we're on the main page, restore original content
         if (path === '/' || path === '/index.html') {
@@ -57,11 +100,21 @@ class Router {
                 throw new Error('Page not found');
             }
 
-            const response = await fetch(page);
+            // Use full path for fetch with base path
+            const fetchPath = this.basePath ? this.basePath + '/' + page : page;
+            const response = await fetch(fetchPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            const content = await response.text();
+            let content = await response.text();
+            
+            // Fix relative paths in loaded content to work with base path
+            if (this.basePath) {
+                // Fix paths like ../public/ to /portfolio/public/
+                content = content.replace(/\.\.\/public\//g, this.basePath + '/public/');
+                // Fix paths like ../css/ to /portfolio/css/ (if any)
+                content = content.replace(/\.\.\/css\//g, this.basePath + '/css/');
+            }
             
             // Replace the main content
             const mainElement = document.querySelector('main');
@@ -78,7 +131,8 @@ class Router {
             console.error('Error loading page:', error);
             // Handle 404 or other errors - navigate to home
             this.restoreMainPage();
-            window.history.replaceState({}, '', '/');
+            const homePath = this.getFullPath('/');
+            window.history.replaceState({}, '', homePath);
         }
     }
 
@@ -91,7 +145,8 @@ class Router {
             mainElement.innerHTML = this.originalMainHTML;
         } else {
             // If we don't have it saved, reload the page
-            window.location.href = '/';
+            const homePath = this.getFullPath('/');
+            window.location.href = homePath;
             return;
         }
         
@@ -145,7 +200,8 @@ class Router {
             
             newButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.navigate('/');
+                const homePath = this.getFullPath('/');
+                window.location.href = homePath;
             });
         }
     }
