@@ -312,7 +312,7 @@ html {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    min-height: 380px;
+    height: 500px;
 }
 
 .project-content {
@@ -321,6 +321,7 @@ html {
     max-width: 50%;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .project-title {
@@ -336,7 +337,7 @@ html {
 .project-description {
     color: #b3c2cb;
     font-family: 'Manrope', sans-serif;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 140%;
     margin-bottom: 24px;
@@ -367,10 +368,11 @@ html {
 
 .project-gradient {
     position: absolute;
-    width: 590px;
-    height: 590px;
-    right: -1px;
-    top: -45px;
+    right: 0;
+    top: 0;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    height: auto;
     pointer-events: none;
 }
 
