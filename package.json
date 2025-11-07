@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Максим Яковенко - UX/UI & Graphic designer Portfolio",
+  "homepage": "https://ykvnkm.github.io/portfolio",
+  "scripts": {
+    "start": "python3 -m http.server 3000",
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

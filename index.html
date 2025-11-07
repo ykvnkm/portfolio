@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максим Яковенко - UX/UI & Graphic designer</title>
+    <link rel="icon" type="image/svg+xml" href="public/vite.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header id="header" class="header">
+        <div class="header-container">
+            <button class="logo-button">
+                <img src="public/images/logo.svg" alt="Logo" class="logo">
+            </button>
+            <nav class="nav-menu">
+                <button class="nav-link" data-scroll="projects">Проекты</button>
+                <button class="nav-link" data-scroll="skills">Навыки и опыт</button>
+                <a href="https://t.me/ykvnkm" target="_blank" rel="noopener noreferrer" class="contact-button">
+                    Связаться со мной
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="avatar-container">
+                        <img src="public/images/avatar.jpeg" alt="Avatar" class="avatar">
+                    </div>
+                    
+                    <h1 class="hero-title">Максим Яковенко</h1>
+                    
+                    <div class="hero-info">
+                        <p class="hero-subtitle">Junior UX/UI & Graphic designer</p>
+                        <div class="hero-contacts">
+                            <a href="tel:+79882551161" class="contact-link">+7 (988) 255-11-61</a>
+                            <span class="separator">|</span>
+                            <a href="https://t.me/ykvnkm" target="_blank" rel="noopener noreferrer" class="contact-link">@ykvnkm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <div class="projects-grid">
+                    <!-- Проекты будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <!-- About content will be rendered by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="what-i-do-section">
+            <div class="container">
+                <div class="section-header">
+                    <img src="public/images/dot.svg" alt="dot" class="section-dot">
+                    <h2 class="section-title">Чем я занимаюсь</h2>
+                </div>
+
+                <div class="categories-list">
+                    <!-- Категории будут добавлены через JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="skills-section" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <img src="public/images/dot.svg" alt="dot" class="section-dot">
+                    <h2 class="section-title">Навыки</h2>
+                </div>
+                <div class="skills-tags">
+                    <!-- Skills will be rendered by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section class="experience-section">
+            <div class="container">
+                <div class="section-header">
+                    <img src="public/images/dot.svg" alt="dot" class="section-dot">
+                    <h2 class="section-title">Опыт</h2>
+                </div>
+                <div class="experience-list">
+                    <!-- Experience items will be rendered by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/router.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
