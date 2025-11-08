@@ -1,6 +1,9 @@
 class Router {
     constructor() {
-        // Simple routing for local development - no base path complexity
+        // Определяем base path из текущего URL (для GitHub Pages это /portfolio/)
+        this.basePath = window.location.pathname.startsWith('/portfolio/') ? '/portfolio' : '';
+        
+        // Routes с учетом base path
         this.routes = {
             '/': 'index.html',
             '/aist-filter': 'aist-filter.html',
@@ -42,15 +45,26 @@ class Router {
     }
 
     async navigate(path) {
+        // Добавляем base path к пути для навигации
+        const fullPath = this.basePath + path;
         // Push the new state to history
-        window.history.pushState({}, '', path);
+        window.history.pushState({}, '', fullPath);
         
         // Handle the route change
         await this.handleRoute();
     }
 
+    getNormalizedPath(fullPath) {
+        // Убираем base path из пути для поиска в routes
+        if (this.basePath && fullPath.startsWith(this.basePath + '/')) {
+            return fullPath.slice(this.basePath.length);
+        }
+        return fullPath;
+    }
+
     async handleRoute() {
-        const path = window.location.pathname;
+        const fullPath = window.location.pathname;
+        const path = this.getNormalizedPath(fullPath);
         
         // If we're on the main page, restore original content
         if (path === '/' || path === '/index.html') {
@@ -65,6 +79,8 @@ class Router {
                 throw new Error('Page not found');
             }
 
+            // Fetch использует относительные пути, которые разрешаются относительно base href
+            // base href уже установлен в index.html как /portfolio/, поэтому пути будут правильными
             const response = await fetch(page);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -86,7 +102,7 @@ class Router {
             console.error('Error loading page:', error);
             // Handle 404 or other errors - navigate to home
             this.restoreMainPage();
-            window.history.replaceState({}, '', '/');
+            window.history.replaceState({}, '', this.basePath + '/');
         }
     }
 
@@ -99,7 +115,7 @@ class Router {
             mainElement.innerHTML = this.originalMainHTML;
         } else {
             // If we don't have it saved, reload the page
-            window.location.href = '/';
+            window.location.href = this.basePath + '/';
             return;
         }
         
