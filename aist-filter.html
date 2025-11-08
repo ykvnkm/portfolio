@@ -1,0 +1,154 @@
+<section class="project-details">
+    <div class="container">
+        <div class="project-header">
+            <img src="public/logos/aist-filter.png" alt="AIST Filter Logo" class="project-logo">
+            <h1 class="project-title">AIST Filter</h1>
+            <p class="project-description">
+                Веб-приложение для фильтрации конфиденциальных и персональных данных в банковских чатах. 
+                Проект реализован в рамках хакатона «AIст» по заданию банка «Центр-Инвест»
+            </p>
+        </div>
+
+        <div class="project-tasks">
+            <h2 class="section-subtitle">Задачи</h2>
+            <ul class="tasks-list">
+                <li>Разработал интерфейс и интерактивный прототип</li>
+                <li>Создал дизайн-систему и логотип</li>
+                <li>Провел юзабилити-тестирование</li>
+                <li>Подготовил презентацию проекта</li>
+            </ul>
+        </div>
+
+        <div class="project-result">
+            <h2 class="section-subtitle">Результат</h2>
+            <p class="result-text">
+                Создан прототип с полным пользовательским сценарием: загрузка чатов, фильтрация данных, 
+                выгрузка обработанных сообщений. Проект занял 2 место на хакатоне.
+            </p>
+        </div>
+
+        <div class="project-images">
+            <img src="public/projects/aist-filter-preview.png" alt="AIST Filter Preview" class="project-image">
+            <img src="public/projects/aist-filter-final.png" alt="AIST Filter Final" class="project-image">
+        </div>
+    </div>
+</section>
+
+<style>
+.project-details {
+    padding-top: 120px;
+    padding-bottom: 80px;
+}
+
+.project-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.project-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 24px;
+}
+
+.project-title {
+    color: #e6e6e6;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 46px;
+    font-weight: 400;
+    letter-spacing: -0.7px;
+    line-height: 120%;
+    margin-bottom: 24px;
+}
+
+.project-description {
+    color: #b3c2cb;
+    font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 140%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-subtitle {
+    color: #e6e6e6;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    line-height: 120%;
+    margin-bottom: 24px;
+}
+
+.tasks-list {
+    list-style: none;
+    color: #b3c2cb;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 64px;
+}
+
+.tasks-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 24px;
+}
+
+.tasks-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: #b3c2cb;
+    border-radius: 50%;
+}
+
+.result-text {
+    color: #b3c2cb;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 64px;
+}
+
+.project-images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+    .project-details {
+        padding-top: 80px;
+    }
+
+    .project-title {
+        font-size: 32px;
+    }
+
+    .project-description {
+        font-size: 16px;
+    }
+
+    .section-subtitle {
+        font-size: 24px;
+    }
+
+    .tasks-list,
+    .result-text {
+        font-size: 16px;
+    }
+}
+</style>
