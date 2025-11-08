@@ -274,23 +274,6 @@ html {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-@media (max-width: 800px) {
-    .category-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
-    .category-tags {
-        gap: 12px;
-    }
-
-    .category-tag {
-        font-size: 14px;
-        padding: 6px 12px;
-    }
-}
-
 /* Projects section styles */
 .projects-section {
     padding: 96px 0;
@@ -315,13 +298,43 @@ html {
     height: 500px;
 }
 
+.project-card-with-image {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
 .project-content {
     position: relative;
-    z-index: 1;
+    z-index: 3;
     max-width: 50%;
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+.project-card-with-image .project-content {
+    flex: 0 0 calc(50% - 40px);
+    max-width: calc(50% - 40px);
+    padding-right: 80px;
+}
+
+.project-card-with-image .project-image-wrapper {
+    position: absolute;
+    right: 48px;
+    top: 60px;
+    bottom: 0;
+    width: calc(50% - 48px);
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.project-card-with-image .project-preview-image {
+    width: 100%;
+    height: calc(100% + 48px);
+    object-fit: cover;
+    object-position: top center;
+    display: block;
 }
 
 .project-title {
@@ -341,6 +354,7 @@ html {
     font-weight: 400;
     line-height: 140%;
     margin-bottom: 24px;
+    flex: 0 0 auto;
 }
 
 .project-button {
@@ -374,6 +388,7 @@ html {
     aspect-ratio: 1 / 1;
     height: auto;
     pointer-events: none;
+    z-index: 1;
 }
 
 /* About Section */
@@ -491,24 +506,11 @@ html {
     grid-template-columns: 1fr auto;
     gap: 24px;
     align-items: center;
-    padding: 24px 0; /* Одинаковые отступы сверху и снизу */
+    padding: 24px 0;
 }
 
 .experience-item:not(:last-child) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-
-@media (max-width: 768px) {
-    .experience-item {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding: 16px 0; /* Уменьшенные отступы для мобильной версии */
-    }
-
-    .experience-details {
-        align-items: flex-start;
-    }
 }
 
 .experience-project {
@@ -573,12 +575,61 @@ html {
         font-size: 28px;
     }
 
+    .category-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .category-tags {
+        gap: 12px;
+    }
+
+    .category-tag {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
     .project-card {
         padding: 32px;
+        height: auto;
+        min-height: 400px;
+    }
+
+    .project-card-with-image {
+        flex-direction: column !important;
+        height: auto !important;
     }
 
     .project-content {
-        max-width: 100%;
+        max-width: 100% !important;
+    }
+
+    .project-card-with-image .project-content {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-right: 0 !important;
+    }
+
+    .project-card-with-image .project-image-wrapper {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: calc(100% + 64px) !important;
+        height: 300px !important;
+        margin-top: 24px;
+        margin-left: -32px;
+        margin-right: -32px;
+        margin-bottom: -32px;
+    }
+
+    .project-card-with-image .project-preview-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: top center !important;
     }
 
     .about-text {
@@ -590,8 +641,9 @@ html {
     }
 
     .experience-item {
-        grid-template-columns: 0.5fr;
+        grid-template-columns: 1fr;
         gap: 16px;
+        padding: 16px 0;
     }
 
     .experience-details {

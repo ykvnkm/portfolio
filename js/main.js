@@ -125,13 +125,20 @@ function renderProjects() {
     const projectsGrid = document.querySelector('.projects-grid');
     if (!projectsGrid) return;
 
-    projectsGrid.innerHTML = projects.map((project, index) => `
-        <div class="project-card">
+    projectsGrid.innerHTML = projects.map((project, index) => {
+        const isAistFilter = project.path === '/aist-filter';
+        return `
+        <div class="project-card ${isAistFilter ? 'project-card-with-image' : ''}">
             <div class="project-content">
                 <h3 class="project-title">${project.title}</h3>
                 <p class="project-description">${project.description}</p>
                 <button class="project-button" data-path="${project.path}">Подробнее</button>
             </div>
+            ${isAistFilter ? `
+                <div class="project-image-wrapper">
+                    <img src="public/images/aist-filter-card-preview.png" alt="${project.title}" class="project-preview-image">
+                </div>
+            ` : ''}
             <svg class="project-gradient" viewBox="0 0 590 590">
                 <defs>
                     <radialGradient id="grad-${index}" cx="50%" cy="50%" r="50%">
@@ -142,7 +149,8 @@ function renderProjects() {
                 <circle cx="295" cy="295" r="295" fill="url(#grad-${index})" />
             </svg>
         </div>
-    `).join('');
+    `;
+    }).join('');
 
     // Add click handlers to project buttons
     document.querySelectorAll('.project-button').forEach(button => {
