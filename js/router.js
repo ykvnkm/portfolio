@@ -79,6 +79,8 @@ class Router {
                 throw new Error('Page not found');
             }
 
+            // Fetch использует относительные пути, которые разрешаются относительно base href
+            // base href уже установлен в index.html как /portfolio/, поэтому пути будут правильными
             const response = await fetch(page);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
