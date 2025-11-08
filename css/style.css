@@ -321,10 +321,10 @@ html {
 .project-card-with-image .project-image-wrapper {
     position: absolute;
     right: 48px;
-    top: 40px;
+    top: 28px;
     bottom: auto;
-    width: 45%;
-    height: 85%;
+    width: 40%;
+    height: 80%;
     overflow: hidden;
     pointer-events: none;
     z-index: 2;
@@ -383,10 +383,10 @@ html {
 
 .project-gradient {
     position: absolute;
-    left: 25%;
+    left: 18%;
     right: auto;
     top: 0;
-    width: 50%;
+    width: 64%;
     aspect-ratio: 1 / 1;
     height: auto;
     pointer-events: none;
