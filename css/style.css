@@ -321,9 +321,10 @@ html {
 .project-card-with-image .project-image-wrapper {
     position: absolute;
     right: 48px;
-    top: 60px;
-    bottom: 0;
-    width: calc(50% - 48px);
+    top: 28px;
+    bottom: auto;
+    width: 40%;
+    height: 80%;
     overflow: hidden;
     pointer-events: none;
     z-index: 2;
@@ -331,8 +332,8 @@ html {
 
 .project-card-with-image .project-preview-image {
     width: 100%;
-    height: calc(100% + 48px);
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     object-position: top center;
     display: block;
 }
@@ -382,9 +383,10 @@ html {
 
 .project-gradient {
     position: absolute;
-    right: 0;
+    left: 18%;
+    right: auto;
     top: 0;
-    width: 50%;
+    width: 64%;
     aspect-ratio: 1 / 1;
     height: auto;
     pointer-events: none;
