@@ -43,7 +43,6 @@ ul,ol{ list-style:none; }
 
 /* Section background alternation — work MUST be white */
 section, footer{ background: var(--beige); }
-section.alt, .work{ }
 .hero{ background: var(--beige); }
 .work{ background: var(--white); }
 .stack{ background: var(--beige); }
