@@ -224,6 +224,26 @@ section, footer{ background: var(--beige); }
   padding: calc(var(--nav-h) + 36px) var(--pad) 36px;
   min-height: 100vh;
   display:flex; flex-direction:column; gap: clamp(24px,3vw,44px);
+  overflow:hidden;
+  background: var(--beige);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top: clamp(-90px, -7vw, -40px);
+  right:0;
+  bottom:-80px;
+  left:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.46;
+  background: url("public/Vector 1.svg") center top / clamp(980px, 118vw, 1740px) auto no-repeat;
+}
+.hero__grid,
+.hero__marq,
+.hero__scroll{
+  position:relative;
+  z-index:1;
 }
 
 /* Grid:
@@ -281,6 +301,9 @@ section, footer{ background: var(--beige); }
   border: 1px solid var(--line);
 }
 .hero__photo img{
+  display:block;
+  position:absolute;
+  inset:0;
   width:100%; height:100%;
   object-fit:cover; object-position: center 20%;
   filter: grayscale(.15) contrast(1.02);
@@ -366,7 +389,13 @@ section, footer{ background: var(--beige); }
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
   }
-  .hero__photo{ grid-column: 1; grid-row: 1; min-height: 52vh; }
+  .hero::before{ display:none; }
+  .hero__photo{
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
   .hero__title{ grid-column:1; grid-row: 2; }
   .hero__name{ grid-column:1; grid-row: 3; }
   .hero__about{ grid-column:1; grid-row: 4; }
@@ -751,10 +780,21 @@ a.exp__row{ cursor: pointer; }
   display:flex;
   flex-direction:column;
   gap: 0;
+  position:relative;
+  isolation:isolate;
   font-family: var(--f); font-weight: 700;
   font-size: clamp(52px, 10vw, 180px);
   letter-spacing: -.04em;
-  opacity:.2;
+}
+.foot__title::before{
+  content:"";
+  position:absolute;
+  inset: -55% -10% -34%;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.72;
+  background: url("public/Vector 2.svg") center 54% / clamp(980px, 120vw, 1680px) auto no-repeat;
+  transform: rotate(-3deg) scaleX(1.04);
 }
 .foot__title .line{
   display:block;
@@ -763,6 +803,7 @@ a.exp__row{ cursor: pointer; }
 }
 .foot__title .word{
   display:inline-block;
+  opacity:.2;
   transform: translateY(110%);
   transition: transform 1s var(--ease-out);
 }
